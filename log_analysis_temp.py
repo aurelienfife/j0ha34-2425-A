@@ -32,3 +32,25 @@ for line in f:
 
 # Close file for resource efficiency
 f.close()
+
+# Take the dictionary and obtain a list of key/value pairs
+# So we can sort them
+ip_count_list = ip_addr.items()
+
+# Next we take the list and sort it by count (descending)
+# To do that we need to create a lambda function 
+# that take a tuple and returns the second element (the count)
+# in this case t is a tuple (key, value) and t[1] is the value alone
+sorted_list = sorted(ip_count_list, key=lambda t:t[1], reverse=True)
+
+# Show on screen
+for pair in sorted_list:
+    print(pair[0], "appears:", pair[1])
+
+# Alternatively save to a file (example: CSV)
+new_f = open("results.csv", "w")
+
+for pair in sorted_list:
+    new_f.write(pair[0] + "," + str(pair[1]) + "\n")  # \n -> new line
+
+new_f.close()
