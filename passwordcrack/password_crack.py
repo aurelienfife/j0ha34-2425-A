@@ -18,7 +18,17 @@ import hashlib
 cred = {} # empty dict
 
 def load_credentials():
-    pass
+    # Open file
+    f = open("leakedcredentials.csv")
+
+    # Split every line and store in dictionary
+    for line in f:
+        item = line.split(',')
+        pass_hash = item[1].strip() # Remove new line
+
+        cred[item[0]] = pass_hash  # key: username, value: password hash
+
+    f.close()
 
 def check_passwords():
     pass
@@ -29,6 +39,7 @@ def compare_password(clear_password, hash):
 def main():    
     # Load the main credentials
     load_credentials()
+    print(cred)
 
 if __name__ == "__main__":
     main()
