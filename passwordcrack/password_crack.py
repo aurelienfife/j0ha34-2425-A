@@ -43,11 +43,13 @@ def check_passwords():
 
         # Go through every password
         for password in p:
-            if compare_password(password, current_hash):
+            if compare_password(password.strip(), current_hash):
                 print("Password found for", username)
                 print(password)
                 print("-"*20)
                 break # Stop loop now
+
+        p.close()
                 
 def compare_password(clear_password, leaked_hash):
     # Convert password to UTF-8 byte sequence
