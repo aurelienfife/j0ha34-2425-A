@@ -44,11 +44,21 @@ def check_passwords():
         # Go through every password
         for password in p:
             if compare_password(password, current_hash):
-                pass
-
-
+                print("Password found for", username)
+                print(password)
+                print("-"*20)
+                break # Stop loop now
+                
 def compare_password(clear_password, leaked_hash):
-    pass
+    # Convert password to UTF-8 byte sequence
+    pass_bytes = clear_password.encode('utf-8')
+    # hash the password
+    new_hash = hashlib.sha256(pass_bytes)
+    # Convert to string
+    if leaked_hash == new_hash.hexdigest():
+        return True
+    else:
+        return False
 
 def main():    
     # Load the main credentials
