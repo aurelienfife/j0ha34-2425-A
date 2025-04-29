@@ -31,15 +31,31 @@ def load_credentials():
     f.close()
 
 def check_passwords():
-    pass
+    # Outer loop -> go through every leaked hash
+    for username in sorted(cred.keys()):
+        current_hash = cred[username]
 
-def compare_password(clear_password, hash):
+        print("Solving password for:", username)
+        print("-"*20)
+        # Open the passwords file and go through them
+
+        p = open("10k-most-common.txt")
+
+        # Go through every password
+        for password in p:
+            if compare_password(password, current_hash):
+                pass
+
+
+def compare_password(clear_password, leaked_hash):
     pass
 
 def main():    
     # Load the main credentials
     load_credentials()
-    print(cred)
+
+    # Check individual hash vs password list
+    check_passwords()
 
 if __name__ == "__main__":
     main()
