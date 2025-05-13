@@ -16,6 +16,8 @@ class user_details:
     username = 'aurelien'
     password = 'password123'
 
+
+
 # new class template for several objects
 class user:     # Constructor function called __init__
     def __init__(self, username, password):
@@ -37,6 +39,9 @@ def authenticate():
         uname = input("What is your username?")
         upass = input("What is your password?")
 
+        # If single user you can test on a single line, e.g.
+        # if user_detail.username == uname and user_detail.password==upass
+        
         # Check through list
         for checked_user in userlist:
             # check if username matches
@@ -54,6 +59,42 @@ def authenticate():
                 print("Program will exit")
                 exit(0)
 
+def menu():
+
+    choice = 0
+
+    print('''Here are the options:
+1 - Coffee
+2 - Tea
+3 - Hot Chocolate
+4 - Quit''')
+
+    # Repeat loop unless quit was chosen
+    while choice != 4:
+
+        # Because of unsafe int conversion we'll use a try statement
+        try:
+            choice = int(input("Please make a selection"))
+        # If the user enters a value not convertible to int, it may crash
+        # The code below handles that case and sets value to an integer
+        # that will just re-run the loop
+        except ValueError:
+            choice = 0
+
+        # match/case statement
+        # new since Python 3.10 - equivalent of switch/case in C/C++/JS etc
+        match choice:
+            case 1:
+                print("You picked coffee")
+            case 2:
+                print("You picked tea")
+            case 3:
+                print("You picked hot chocolate")
+            case 4:
+                print("Bye.")
+            case _:    # default case
+                print("Option not recognised, please try again.")
+                
 def main():
     # Create a couple of username/password combinations
     user1 = user("aurelien", "password123")
@@ -62,6 +103,8 @@ def main():
     userlist.append(user2)
 
     authenticate()
+    menu()
+
 
 if __name__ == "__main__":
     main()
