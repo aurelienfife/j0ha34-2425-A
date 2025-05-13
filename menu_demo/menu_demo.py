@@ -22,12 +22,9 @@ class user:     # Constructor function called __init__
         self.username = username
         self.password = password
 
-def main():
-    # Create a couple of username/password combinations
-    user1 = user("aurelien", "password123")
-    user2 = user("arthur", "123password")
-    userlist = [user1, user2]
+userlist = [] # Global list of users
 
+def authenticate():
     # For login set-up an attempt counter
     attempts = 0
 
@@ -57,16 +54,14 @@ def main():
                 print("Program will exit")
                 exit(0)
 
-                
+def main():
+    # Create a couple of username/password combinations
+    user1 = user("aurelien", "password123")
+    user2 = user("arthur", "123password")
+    userlist.append(user1)
+    userlist.append(user2)
 
-
-
-
-
-
-
-
-
+    authenticate()
 
 if __name__ == "__main__":
     main()
